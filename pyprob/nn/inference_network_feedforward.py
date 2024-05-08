@@ -5,7 +5,7 @@ from termcolor import colored
 
 from . import InferenceNetwork, ProposalNormalNormalMixture, ProposalUniformTruncatedNormalMixture, ProposalCategoricalCategorical, ProposalBernoulliBernoulli, ProposalPoissonTruncatedNormalMixture
 from .. import util
-from ..distributions import Normal, Uniform, Categorical, Poisson, Bernoulli
+from ..distributions import Normal, Uniform, Categorical, Poisson, Bernoulli, GymDiscrete
 
 
 class InferenceNetworkFeedForward(InferenceNetwork):
@@ -34,7 +34,7 @@ class InferenceNetworkFeedForward(InferenceNetwork):
                         layer = ProposalUniformTruncatedNormalMixture(self._observe_embedding_dim, mixture_components=self._proposal_mixture_components)
                     elif isinstance(distribution, Poisson):
                         layer = ProposalPoissonTruncatedNormalMixture(self._observe_embedding_dim, mixture_components=self._proposal_mixture_components)
-                    elif isinstance(distribution, Categorical):
+                    elif isinstance(distribution, Categorical) or isinstance(distribution, GymDiscrete):
                         layer = ProposalCategoricalCategorical(self._observe_embedding_dim, distribution.num_categories)
                     elif isinstance(distribution, Bernoulli):
                         layer = ProposalBernoulliBernoulli(self._observe_embedding_dim)
