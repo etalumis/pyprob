@@ -15,3 +15,4 @@ from .uniform import Uniform
 from .von_mises import VonMises
 from .weibull import Weibull
 from .empirical import Empirical
+from .gymnasium import GymDiscrete
