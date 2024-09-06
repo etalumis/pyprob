@@ -4,6 +4,7 @@ from .embedding_cnn_2d_5c import EmbeddingCNN2D5C
 from .embedding_cnn_3d_5c import EmbeddingCNN3D5C
 from .proposal_normal_normal import ProposalNormalNormal
 from .proposal_normal_normal_mixture import ProposalNormalNormalMixture
+from .proposal_truncated_normal_normal_mixture import ProposalTruncatedNormalNormalMixture
 from .proposal_uniform_beta import ProposalUniformBeta
 from .proposal_uniform_beta_mixture import ProposalUniformBetaMixture
 from .proposal_uniform_truncated_normal_mixture import ProposalUniformTruncatedNormalMixture

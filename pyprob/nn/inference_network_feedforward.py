@@ -3,9 +3,9 @@ import torch.nn as nn
 import warnings
 from termcolor import colored
 
-from . import InferenceNetwork, ProposalNormalNormalMixture, ProposalUniformTruncatedNormalMixture, ProposalCategoricalCategorical, ProposalBernoulliBernoulli, ProposalPoissonTruncatedNormalMixture
+from . import InferenceNetwork, ProposalNormalNormalMixture, ProposalTruncatedNormalNormalMixture, ProposalUniformTruncatedNormalMixture, ProposalCategoricalCategorical, ProposalBernoulliBernoulli, ProposalPoissonTruncatedNormalMixture
 from .. import util
-from ..distributions import Normal, Uniform, Categorical, Poisson, Bernoulli, GymDiscrete
+from ..distributions import Normal, TruncatedNormal, Uniform, Categorical, Poisson, Bernoulli, GymDiscrete
 
 
 class InferenceNetworkFeedForward(InferenceNetwork):
@@ -30,6 +30,8 @@ class InferenceNetworkFeedForward(InferenceNetwork):
                     print('New layers, address: {}, distribution: {}'.format(util.truncate_str(address), distribution.name))
                     if isinstance(distribution, Normal):
                         layer = ProposalNormalNormalMixture(self._observe_embedding_dim, mixture_components=self._proposal_mixture_components)
+                    elif isinstance(distribution, TruncatedNormal):
+                        layer = ProposalTruncatedNormalNormalMixture(self._observe_embedding_dim, mixture_components=self._proposal_mixture_components)
                     elif isinstance(distribution, Uniform):
                         layer = ProposalUniformTruncatedNormalMixture(self._observe_embedding_dim, mixture_components=self._proposal_mixture_components)
                     elif isinstance(distribution, Poisson):
